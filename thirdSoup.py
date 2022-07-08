@@ -32,9 +32,16 @@ def findContent(url):
 def loadUrl(s):
     URL2 = s
     print(URL2)
+betterVar = "tester"
+test = "test"
+
+def addEntry(betterVar, test):
+    mydb.addEntry(betterVar, test)
 
 myWebAddresses = mydb.connectAndGetAllWebsites()
 print(myWebAddresses[0]['address'])
+
+
 
 root = tk.Tk()
 root.title("Menu Page")
@@ -49,6 +56,7 @@ textbox.pack()
 loadButton = ttk.Button(root, text="save URL", command=lambda : loadUrl(textbox.get()))
 checkButton =  ttk.Button(root, text="press to extract image tags", command=lambda : findContent(textbox.get()))
 autoLoadButton = ttk.Button(root, text="load from database", command = lambda : findContent(myWebAddresses[0]['address']))
+loadAddressButton = ttk.Button(root, text= "Add address to database", command = lambda : addEntry(textbox.get(), "test"))
 textM = tk.StringVar()
 textI = tk.StringVar()
 textI.set("image tags will be displayed here")
@@ -60,6 +68,7 @@ loadButton.pack()
 
 checkButton.pack()
 autoLoadButton.pack()
+loadAddressButton.pack()
 
 T = tk.Text(root, height=8, width=70)
 msg.pack()

@@ -1,8 +1,9 @@
 from pymongo import MongoClient
-client = MongoClient('localhost', 27017)
-print("connected to localhost")
+
 
 def connectAndGetAllWebsites():
+    client = MongoClient('localhost', 27017)
+    print("connected to localhost")
     db = client.websites
     collection = db.websites
     myList = collection.find()
@@ -14,4 +15,14 @@ def connectAndGetAllWebsites():
     client.close()
     return myWebbies
 
+def addEntry(address, notes):
+
+    client = MongoClient('localhost', 27017)
+    print("connected to localhost")
+    db = client.websites
+    collection = db.websites
+    mydict = { "address": address, "images": "", "notes": notes }
+
+    x = collection.insert_one(mydict)
+    client.close()
 
