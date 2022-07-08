@@ -18,11 +18,15 @@ def findContent(url):
     print(myImages)
     for item in myImages:
         print(item)
+        
         textM.set(item)
         T.insert(tk.END, textM.get() + "\n")
+    sources =[]
+    for var in range(len(myImages)):
+        print(var)
+        
+        
 
-    #textM.set(str(myImages))
-    #T.insert(tk.END, textM.get() )
     
 
     
