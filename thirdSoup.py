@@ -28,10 +28,6 @@ def findContent(url):
         print(var)
             
 
-
-def loadUrl(s):
-    URL2 = s
-    print(URL2)
 betterVar = "tester"
 test = "test"
 
@@ -53,10 +49,17 @@ myLabel = ttk.Label(root, textvariable=textTitle)
 myLabel.pack()
 textbox = ttk.Entry(root)
 textbox.pack()
-loadButton = ttk.Button(root, text="save URL", command=lambda : loadUrl(textbox.get()))
+notemessage = tk.StringVar()
+notemessage.set("write notes here")
+myNoteLabel = ttk.Label(root, textvariable=notemessage)
+myNoteLabel.pack()
+noteT = tk.Text(root, height=3, width=70)
+noteT.pack()
+
+
 checkButton =  ttk.Button(root, text="press to extract image tags", command=lambda : findContent(textbox.get()))
 autoLoadButton = ttk.Button(root, text="load from database", command = lambda : findContent(myWebAddresses[0]['address']))
-loadAddressButton = ttk.Button(root, text= "Add address to database", command = lambda : addEntry(textbox.get(), "test"))
+loadAddressButton = ttk.Button(root, text= "Add address to database", command = lambda : addEntry(textbox.get(), noteT.get('1.0','end')))
 textM = tk.StringVar()
 textI = tk.StringVar()
 textI.set("image tags will be displayed here")
@@ -64,7 +67,7 @@ textI.set("image tags will be displayed here")
 
 msg = tk.Message(root, textvariable = textI)
 
-loadButton.pack()
+
 
 checkButton.pack()
 autoLoadButton.pack()
