@@ -2,7 +2,7 @@ from gettext import gettext
 import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
-from tkinter import ttk
+from tkinter import END, ttk
 import mydb
 
 
@@ -15,7 +15,7 @@ def findContent(url):
     soup = BeautifulSoup(r.content, 'html5lib')
 
     myImages = soup.find_all("img")
-
+    T.delete(1.0, END)
 
     print(myImages)
     for item in myImages:
