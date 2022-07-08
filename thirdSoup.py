@@ -15,11 +15,12 @@ def findContent(url):
 
     myImages = soup.find_all("img")
 
+
     print(myImages)
     for item in myImages:
-        print(item)
         
-        textM.set(item)
+        print(item['src'])
+        textM.set(item['src'])
         T.insert(tk.END, textM.get() + "\n")
     sources =[]
     for var in range(len(myImages)):
