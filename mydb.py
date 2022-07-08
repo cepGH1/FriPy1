@@ -1,12 +1,17 @@
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
+print("connected to localhost")
 
-db = client.movies
-collection = db.movies
-myList = collection.find()
-for item in myList:
-    print(item)
+def connectAndGetAllWebsites():
+    db = client.websites
+    collection = db.websites
+    myList = collection.find()
+    myWebbies =[]
+    for item in myList:
+        print(item)
+        myWebbies.append(item)
 
-client.close()
+    client.close()
+    return myWebbies
 
 
