@@ -16,8 +16,13 @@ def findContent(url):
     myImages = soup.find_all("img")
 
     print(myImages)
-    textM.set(str(myImages))
-    T.insert(tk.END, textM.get() )
+    for item in myImages:
+        print(item)
+        textM.set(item)
+        T.insert(tk.END, textM.get() + "\n")
+
+    #textM.set(str(myImages))
+    #T.insert(tk.END, textM.get() )
     
 
     
