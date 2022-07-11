@@ -1,8 +1,9 @@
 from gettext import gettext
+from turtle import right
 import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
-from tkinter import END, ttk
+from tkinter import BOTTOM, END, RIGHT, ttk
 import mydb
 
 
@@ -71,7 +72,7 @@ msg = tk.Message(root, textvariable = textI)
 
 
 
-checkButton.pack()
+checkButton.pack(side=RIGHT, padx=5, pady=5)
 autoLoadButton.pack()
 loadAddressButton.pack()
 basesNumberLoadButton.pack()
