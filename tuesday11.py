@@ -14,8 +14,11 @@ myPicAddress = myWebbies[8]['address'] + myWebbies[8]['images'][0]
 print(myPicAddress)
 
 ims = requests.get(myPicAddress)
-#print(ims.content)
+
 img = Image.open(BytesIO(ims.content))
+
+img.save("textPic1.jpg")
+
 plt.title("Science")
 plt.xlabel("X pixel scaling")
 plt.ylabel("Y pixels scaling")
