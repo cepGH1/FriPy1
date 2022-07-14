@@ -6,11 +6,11 @@ from PIL import Image
 from io import BytesIO
 
 myWebbies = mydb.connectAndGetAllWebsites()
-print(myWebbies)
 
-print(myWebbies[8]['images'][0])
+#print(myWebbies[8]['images'][0])
 
-myPicAddress = myWebbies[8]['address'] + myWebbies[8]['images'][0]
+#myPicAddress = myWebbies[8]['address'] + myWebbies[9]['images'][0]
+myPicAddress = myWebbies[9]['images'][0]
 print(myPicAddress)
 
 ims = requests.get(myPicAddress)

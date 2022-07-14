@@ -24,19 +24,26 @@ def findContent(url):
     print(myLinks)
     
     
+    if(myImages.__len__ != 0):
+        for item in myImages:
+            print(item['src'])
+            textM.set(item['src'])
+            sources.append(item['src'])
+            T.insert(tk.END, textM.get() + "\n")
 
-    for item in myImages:
-        
-        print(item['src'])
-        textM.set(item['src'])
-        sources.append(item['src'])
-        T.insert(tk.END, textM.get() + "\n")
+    else:
+        print("no images")
 
-    for thing in myLinks:
-        print(thing['href'])
-        anchors.append(thing['href'])
-        textK.set(thing['href'])
-        K.insert(tk.END, textK.get() + "\n")
+    if(myLinks.__len__ != 0):
+        for thing in myLinks:
+            print(thing['href'])
+            textK.set(thing['href'])
+            anchors.append(thing['href']) 
+            K.insert(tk.END, textK.get() + "\n")
+
+    else:
+        print("There are no anchors")
+
             
 def findContent2(num):
     T.delete(1.0, END) 
@@ -102,4 +109,7 @@ button1 = Button(root, text="button1")
 button1.pack(side=RIGHT, padx=5, pady=5)
 button2 = Button(root, text="Save Full Entry", command = lambda : addFullEntry(textbox.get(), sources, myNotes.get('1.0', 'end')))
 button2.pack(side=RIGHT, padx=5, pady=5)
+button3 = Button(root, text="Show Images" )
+button3.pack(side=RIGHT, padx=5, pady=5)
+
 root.mainloop()
