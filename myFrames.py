@@ -3,6 +3,7 @@ from tkinter import BOTTOM, END, RAISED, RIGHT, Button, ttk, BOTH, Frame
 import mydb
 import requests
 from bs4 import BeautifulSoup
+import show_images1 as disp
 
 sources =[]
 anchors =[]
@@ -24,7 +25,7 @@ def findContent(url):
     print(myLinks)
     
     
-    if(myImages.__len__ != 0):
+    if myImages:
         for item in myImages:
             print(item['src'])
             textM.set(item['src'])
@@ -34,7 +35,7 @@ def findContent(url):
     else:
         print("no images")
 
-    if(myLinks.__len__ != 0):
+    if myLinks:
         for thing in myLinks:
             print(thing['href'])
             textK.set(thing['href'])
@@ -57,6 +58,11 @@ def addFullEntry(address, images, notes):
 
 def pressedButton1():
     pass
+
+def showImages(imageAddresses):
+    #print(imageAddresses[0])
+    disp.Shower(imageAddresses)
+
 
 myWebAddresses = mydb.connectAndGetAllWebsites()
 print(myWebAddresses[0]['address'])
@@ -109,7 +115,7 @@ button1 = Button(root, text="button1")
 button1.pack(side=RIGHT, padx=5, pady=5)
 button2 = Button(root, text="Save Full Entry", command = lambda : addFullEntry(textbox.get(), sources, myNotes.get('1.0', 'end')))
 button2.pack(side=RIGHT, padx=5, pady=5)
-button3 = Button(root, text="Show Images" )
+button3 = Button(root, text="Show Images", command = lambda : showImages(sources) )
 button3.pack(side=RIGHT, padx=5, pady=5)
 
 root.mainloop()
