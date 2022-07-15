@@ -30,7 +30,7 @@ def findContent(url):
 
     print(myImages)
     print(myLinks)
-    
+    sources.clear()
     
     if myImages:
         for item in myImages:
@@ -70,12 +70,22 @@ def getImages(myList):
     print(myList[0]) 
     workingImages.clear()        
     for item in myList:
-        try:
-            ims = requests.get(item)
-            realImage = Image.open(by(ims.content)) 
-        except:
-            print("download failed")
+        if "http" in item:
+            try:
+                ims = requests.get(item)
+                realImage = Image.open(by(ims.content)) 
+            except:
+                print("download failed")
+                realImage = Image.open('textPic1.jpg')
+        elif item[0]=='/':
+            fullAddress = textbox.get() + item
             realImage = Image.open('textPic1.jpg')
+        elif item[0] != '.':
+            fullAddress = textbox.get() + item
+            ims = requests.get(fullAddress)
+            realImage = Image.open(by(ims.content))
+        else:
+            realImage = Image.open('textPic1.jpg') 
         img = ImageTk.PhotoImage(realImage) 
         workingImages.append(img)
     
