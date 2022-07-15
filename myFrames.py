@@ -74,16 +74,20 @@ def getImages(myList):
             try:
                 ims = requests.get(item)
                 realImage = Image.open(by(ims.content)) 
+                realImage = realImage.resize((500,500))
             except:
                 print("download failed")
                 realImage = Image.open('textPic1.jpg')
-        elif item[0]=='/':
-            fullAddress = textbox.get() + item
-            realImage = Image.open('textPic1.jpg')
+
         elif item[0] != '.':
             fullAddress = textbox.get() + item
-            ims = requests.get(fullAddress)
-            realImage = Image.open(by(ims.content))
+            try:
+                ims = requests.get(fullAddress)
+                realImage = Image.open(by(ims.content))
+                realImage = realImage.resize((500,500))
+            except:
+                print("download failed")
+                realImage = Image.open("textPic1.jpg")
         else:
             realImage = Image.open('textPic1.jpg') 
         img = ImageTk.PhotoImage(realImage) 
