@@ -1,12 +1,19 @@
 import tkinter as tk
-from tkinter import BOTTOM, END, RAISED, RIGHT, Button, ttk, BOTH, Frame
+from tkinter import BOTTOM, END, RAISED, RIGHT, Button, Toplevel, ttk, BOTH, Frame, Canvas, NW
+
+from matplotlib.pyplot import pause
 import mydb
 import requests
 from bs4 import BeautifulSoup
 import show_images1 as disp
+import show_images2 as disp2
+from PIL import Image, ImageTk
+from io import BytesIO as by
+
 
 sources =[]
 anchors =[]
+workingImages = []
 
 def findContent(url):
     """finds all the image tags from a web page using beautiful soup"""
@@ -59,9 +66,44 @@ def addFullEntry(address, images, notes):
 def pressedButton1():
     pass
 
-def showImages(imageAddresses):
-    #print(imageAddresses[0])
-    disp.Shower(imageAddresses)
+def getImages(myList):
+    print(myList[0]) 
+    workingImages.clear()        
+    for item in myList:
+        try:
+            ims = requests.get(item)
+            realImage = Image.open(by(ims.content)) 
+        except:
+            print("download failed")
+            realImage = Image.open('textPic1.jpg')
+        img = ImageTk.PhotoImage(realImage) 
+        workingImages.append(img)
+    
+
+def showImages(myList):
+    getImages(myList)
+    for num in range(len(workingImages)):
+        top2 = Toplevel(root) 
+        top2.title("child") 
+        myTop2Label = ttk.Label(top2, text="image number " + str(num)).pack()
+        canvas = Canvas(top2, width = 600, height = 600) 
+        canvas.pack()
+        try:
+            canvas.create_image(20,20, anchor=NW, image=workingImages[num])
+            
+        except:
+            print("not quick enough")
+
+        
+    
+   
+        
+              
+    
+        
+        
+    
+    
 
 
 myWebAddresses = mydb.connectAndGetAllWebsites()
