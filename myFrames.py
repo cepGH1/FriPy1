@@ -77,7 +77,7 @@ def getImages(myList):
                 realImage = realImage.resize((500,500))
             except:
                 print("download failed")
-                realImage = Image.open('textPic1.jpg')
+                realImage = Image.open('FNF.jpg')
 
         elif item[0] != '.':
             fullAddress = textbox.get() + item
@@ -87,7 +87,7 @@ def getImages(myList):
                 realImage = realImage.resize((500,500))
             except:
                 print("download failed")
-                realImage = Image.open("textPic1.jpg")
+                realImage = Image.open("FNF.jpg")
         else:
             realImage = Image.open('textPic1.jpg') 
         img = ImageTk.PhotoImage(realImage) 
@@ -106,7 +106,7 @@ def showImages(myList):
             canvas.create_image(20,20, anchor=NW, image=workingImages[num])
             
         except:
-            print("not quick enough")
+            print("Image could not be loaded")
 
         
     
